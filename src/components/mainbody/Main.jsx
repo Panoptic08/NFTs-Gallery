@@ -7,6 +7,7 @@ function Main() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [heartColors, setHeartColors] = useState({});
+  const [savedcolor, setsavedcolor] = useState({});
 
   const nfts = [
     { src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwkp_IZ8cuKBOnNK4wQuGkGcI2lw27dhKnOQ&s", name: "Music", category: "Music" },
@@ -33,6 +34,14 @@ function Main() {
 
   const changeHeartColor = (index) => {
     setHeartColors((prevColors) => ({
+      ...prevColors,
+      [index]: !prevColors[index]
+    }));
+  };
+
+  
+  const changesavedColor = (index) => {
+    setsavedcolor((prevColors) => ({
       ...prevColors,
       [index]: !prevColors[index]
     }));
@@ -73,14 +82,14 @@ function Main() {
                     <img
                       src="https://cdn-icons-png.flaticon.com/256/1077/1077035.png"
                       alt="Heart"
-                      className={`h-7 rounded-l hover:scale-125 transition duration-300  ${
+                      className={`h-7 rounded hover:scale-125 transition duration-300  ${
                         heartColors[index] ? 'filter invert red saturate hue-rotate brightness contrast ' : 'bg-red-500'
                       }`}
                     />
                   </button>
-                  <button onClick={() => changeHeartColor(index2)}>
-                    <img src={save} alt="Save" className={`h-7 rounded-l hover:scale-125 transition duration-300  ${
-                        heartColors[index2] ? 'filter invert red saturate hue-rotate brightness contrast ' : 'bg-white'
+                  <button onClick={() => changesavedColor(index)}>
+                    <img src={save} alt="Save" className={`h-7 rounded-l hover:scale-125 transition duration-300 w-auto  ${
+                        savedcolor[index] ? 'filter invert red saturate hue-rotate brightness contrast ' : 'bg-white'
                       }`} />
                   </button>
                 </div>
